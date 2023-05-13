@@ -1,33 +1,84 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stop Watch</title>
-    <link rel="stylesheet" href="stylepro7.css">
+    <title>Temperture Converter</title>
+
+<style>
+    body{
+        padding: 50px 100px;
+    }
+
+    h1{
+        text-align: center;
+    }
+
+    #container{
+        text-align: center;
+        background-color: #1abc9c;
+        padding: 50px;
+    }
+
+    .input-div{
+        display: inline-block;
+    }
+
+    .inp{
+        padding: 5px 10px;
+        margin: 10px;
+        font-size: 30px;
+        font-weight: bold;
+        width: 250px;
+        text-align: center;
+    }
+
+    label{
+        font-size: 25px;
+    }
+</style>
+
 </head>
 <body>
-    <h1>Stopwatch</h1>
+
+    <h1>Temperture Converter</h1>
 
     <div id="container">
-        <div id="time">
-            <span class="digit" id="hr">00</span>
-            <span class="txt">HR</span>
-            <span class="digit" id="min">00</span>
-            <span class="txt">Min</span>
-            <span class="digit" id="sec">00</span>
-            <span class="txt">Sec</span>
-            <span class="digit" id="count">00</span>
+        <div class="input-div"> 
+            <label> Celsius</label>   <br>
+            <input type="number" value="0" id="cel" class="inp">
         </div>
-
-        <div id="btn-container">
-            <button class="btn" id="start" onclick="start()">Start</button>
-            <button class="btn" id="stop" onclick="stop()">Stop</button>
-            <button class="btn" id="reset" onclick="reset()">Reset</button>
+        <div class="input-div">
+            <label> Fahrenheit</label>   <br>
+            <input type="number" value="32" id="fah" class="inp">
         </div>
     </div>
 
-    <script src="scriptpro7.js"></script>
+    <script>
+        var cel = document.getElementById("cel");
+        var fah = document.getElementById("fah");
+
+        cel.addEventListener('input', function(){
+            let c = this.value;
+            let f = (c * 9/5) + 32;
+            if(!Number.isInteger(f)){  // check is number or not
+                f = f.toFixed(4);  // four digit after point
+            }
+            fah.value = f;
+        });
+
+        fah.addEventListener('input', function(){
+            let f = this.value;
+            let c = (f - 32) * 5/9;
+            if(!Number.isInteger(c)){  // check is number or not
+                c = c.toFixed(4);  // four digit after point
+            }
+            cel.value = c;            
+        });
+
+    </script>
+
 </body>
 </html>
